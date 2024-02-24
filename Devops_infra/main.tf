@@ -11,7 +11,7 @@ module "storage_account" {
   storage_account_name     = local.Infra_defaults.name
   resource_group_name      = local.Infra_defaults.resource_group_name
   location                 = local.Infra_defaults.location
-  account_tier             = local.Infra_defaults.account_tier
+  account_tier             = "Standard"
   account_replication_type = local.Infra_defaults.replication_type
 }
 

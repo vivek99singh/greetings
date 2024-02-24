@@ -5,5 +5,4 @@ resource "azurerm_storage_account" "storage" {
   account_tier             = var.account_tier
   account_replication_type = var.account_replication_type
 
-
 }
