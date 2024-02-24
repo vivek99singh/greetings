@@ -30,13 +30,16 @@ jobs:
         
       - name: Initialize Terraform
         run: terraform init
+        working-directory: devops_infra
       
       - name: Plan Terraform Changes
         run: |
           terraform plan
+        working-directory: devops_infra
 
       - name: Apply Terraform Changes
         run: terraform apply -auto-approve
+        working-directory: devops_infra
         
         # Ensure that the container has been created
         # This step assumes Azure CLI is already logged in
