@@ -13,5 +13,6 @@ module "storage_account" {
   location                 = local.Infra_defaults.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  depends_on               = [module.resource_group]
 }
 
