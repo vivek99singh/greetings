@@ -3,7 +3,7 @@ name: Terraform Azure Resource Group
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   terraform:
