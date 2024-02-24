@@ -5,9 +5,6 @@ module "resource_group" {
   location             = local.Infra_defaults.location
 }
 
-output "resource_group_id" {
-  value = module.resource_group.resource_group_id
-}
 
 module "storage_account" {
   source                   = "./storageaccount_module"
@@ -18,6 +15,3 @@ module "storage_account" {
   account_replication_type = local.Infra_defaults.replication_type
 }
 
-output "storage_account_primary_connection_string" {
-  value = module.storage_account.storage_account_primary_connection_string
-}
