@@ -49,8 +49,8 @@ jobs:
             cat <<EOF >backend.tf
             terraform {
               backend "azurerm" {
-                resource_group_name   = "myrg"
-                storage_account_name  = "dvstg991983"
+                resource_group_name   = "myexperimentrg"
+                storage_account_name  = "mybackendstorage2502"
                 container_name        = "tfstate"
                 key                   = "terraform.tfstate"
 
