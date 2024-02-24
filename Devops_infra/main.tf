@@ -12,6 +12,6 @@ module "storage_account" {
   resource_group_name      = local.Infra_defaults.resource_group_name
   location                 = local.Infra_defaults.location
   account_tier             = "Standard"
-  account_replication_type = local.Infra_defaults.replication_type
+  account_replication_type = "LRS"
 }
 
