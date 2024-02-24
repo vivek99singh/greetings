@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Countries</title>
+    <style>
+      /* Add styles for the flag image to cover the entire background */
+      #flagImage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.5; /* Adjust opacity to make text readable */
+      }
+      /* Ensure the form and greeting are positioned above the background */
+      #greetForm, #greeting, #newsContainer {
+        position: relative;
+        z-index: 10;
+      }
+    </style>
+</head>
+<body>
+    <!-- Image tag for the country flag as a background -->
+    <img id="flagImage" src="" alt="Country flag" hidden>
+
+    <h1>Hello Countries</h1>
+    <form id="greetForm">
+        <label for="country">Choose a country:</label>
+        <select name="country" id="country">
+            <option value="USA">USA</option>
+            <option value="France">France</option>
+            <option value="Spain">Spain</option>
+            <option value="Germany">Germany</option>
+            <option value="Italy">Italy</option>
+            <option value="India">India</option>
+            <!-- Add more options for other countries -->
+        </select>
+        <button type="submit">Greet Me!</button>
+    </form>
+    <p id="greeting"></p>
+    <div id="newsContainer"></div> <!-- Container for news -->
+
+    <script>
+        document.getElementById('greetForm').onsubmit = function(event) {
+            event.preventDefault();
+            var country = document.getElementById('country').value;
+            fetchGreeting(country);
+            fetchNews(country); // Fetch and display news for the selected country
+        };
+
+        function fetchGreeting(country) {
+            fetch('/greet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ country: country }),
+            })
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('greeting').textContent = text;
+                var flagImage = document.getElementById('flagImage');
+                flagImage.src = '/images/flags/' + country + '_flag.png';
+                flagImage.hidden = false;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function fetchNews(country) {
+            fetch('/api/news', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ country: country }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayNews(data.articles);
+            })
+            .catch(error => console.error('Error fetching news:', error));
+        }
+
+        function displayNews(articles) {
+            const newsContainer = document.getElementById('newsContainer');
+            newsContainer.innerHTML = ''; // Clear previous news
+            articles.forEach(article => {
+                const articleElement = document.createElement('div');
+                articleElement.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>${article.description}</p>
+                    <a href="${article.url}" target="_blank">Read more</a>
+                `;
+                newsContainer.appendChild(articleElement);
+            });
+        }
+    </script>
+</body>
+</html>
