@@ -65,7 +65,7 @@ jobs:
         working-directory: Devops_infra
 
       - name: Commit backend configuration
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
