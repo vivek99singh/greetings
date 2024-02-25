@@ -43,8 +43,8 @@ jobs:
             cat <<EOF >backend.tf
             terraform {
               backend "azurerm" {
-                resource_group_name   = "myexperimentrg1234"
-                storage_account_name  = "mybackendstorage28022024"
+                resource_group_name   = "myexperimentrg12"
+                storage_account_name  = "mybackendstorage24022024"
                 container_name        = "tfstate"
                 key                   = "terraform.tfstate"
 
@@ -54,6 +54,10 @@ jobs:
         
       - name: Initialize Terraform with new backend and migrate state
         run: terraform init  -migrate-state -force-copy
+        working-directory: Devops_infra
+
+      - name: List Terraform state
+        run: terraform state list
         working-directory: Devops_infra
 
       - name: Commit backend configuration
