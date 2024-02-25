@@ -67,7 +67,7 @@ jobs:
           git config --global user.email 'github-actions@github.com'
           git checkout main
           cd Devops_infra
-          git add backend.tf
+          git add .
           git status
           git commit -m "Add backend configuration"
           git push https://${{ secrets.GITHUB_TOKEN }}@github.com/vivek99singh/greetings.git HEAD:main
