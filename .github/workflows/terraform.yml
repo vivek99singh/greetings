@@ -61,10 +61,10 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git fetch
-          git checkout ${{ github.ref }}
+          git checkout main
           git add backend.tf
-          git commit -m "Add backend configuration"
+          git status
+          git commit -m "Add backend configuration" || echo "No changes to commit"
           git push https://${{ secrets.GITHUB_TOKEN }}@github.com/vivek99singh/greetings.git HEAD:main
 
         
