@@ -62,7 +62,7 @@ jobs:
         
       - name: Initialize Terraform with new backend and migrate state
         run: terraform init  -migrate-state -force-copy
-        working-directory: devops_infra
+        working-directory: Devops_infra
 
       - name: Commit backend configuration
         if: github.ref == 'refs/heads/master'
@@ -73,7 +73,7 @@ jobs:
           git checkout ${{ github.ref }}
           git add backend.tf
           git commit -m "Add backend configuration"
-          git push origin HEAD:master
+          git push origin HEAD:main
         
 
 
