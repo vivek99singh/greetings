@@ -43,8 +43,8 @@ jobs:
             cat <<EOF >backend.tf
             terraform {
               backend "azurerm" {
-                resource_group_name   = "myexperimentrg12"
-                storage_account_name  = "mybackendstorage24022024"
+                resource_group_name   = "myexperimentrg"
+                storage_account_name  = "mybackendstorage23022024"
                 container_name        = "tfstate"
                 key                   = "terraform.tfstate"
 
@@ -66,6 +66,7 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git checkout main
+          cd Devops_infra
           git add backend.tf
           git status
           git commit -m "Add backend configuration"

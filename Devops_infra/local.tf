@@ -1,7 +1,7 @@
 locals {
   Infra_defaults = {
-    name         = "mybackendstorage24022024"
-    resource_group_name = "myexperimentrg12"
+    name         = "mybackendstorage23022024"
+    resource_group_name = "myexperimentrg"
     location     = "westeurope"
     account_tier = "Standard"
     replication_type = "LRS"
