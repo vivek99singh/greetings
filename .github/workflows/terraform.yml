@@ -43,8 +43,8 @@ jobs:
             cat <<EOF >backend.tf
             terraform {
               backend "azurerm" {
-                resource_group_name   = "myexperimentrg123"
-                storage_account_name  = "mybackendstorage27022024"
+                resource_group_name   = "myexperimentrg1234"
+                storage_account_name  = "mybackendstorage28022024"
                 container_name        = "tfstate"
                 key                   = "terraform.tfstate"
 
@@ -64,7 +64,7 @@ jobs:
           git checkout main
           git add backend.tf
           git status
-          git commit -m "Add backend configuration" || echo "No changes to commit"
+          git commit -m "Add backend configuration"
           git push https://${{ secrets.GITHUB_TOKEN }}@github.com/vivek99singh/greetings.git HEAD:main
 
         
